@@ -1,5 +1,6 @@
 package com.portfolio.hermosilla.Service;
 
+import com.portfolio.hermosilla.DTO.PersonaDTO;
 import com.portfolio.hermosilla.Model.Persona;
 import com.portfolio.hermosilla.Repository.PersonaRepository;
 import java.util.List;
@@ -20,6 +21,23 @@ public class PersonaService implements IPersonaService{
 
     @Override
     public Persona savePersona(Persona persona) {
+        personaRepo.save(persona);
+        return persona;
+    }
+    
+    @Override
+    public Persona savePersonaDTO(PersonaDTO personaDTO) {
+        Persona persona = new Persona(
+                personaDTO.getId(),
+                personaDTO.getName(),
+                personaDTO.getProfilePhoto(),
+                personaDTO.getImage(),
+                personaDTO.getPosition(),
+                personaDTO.getUbication(),
+                personaDTO.getAbout(),
+                personaDTO.getCompany(),
+                personaDTO.getSchool()
+                );
         personaRepo.save(persona);
         return persona;
     }

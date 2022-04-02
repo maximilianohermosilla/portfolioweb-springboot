@@ -2,6 +2,7 @@ package com.portfolio.hermosilla.Controller;
 
 import org.springframework.http.HttpStatus;
 import com.portfolio.hermosilla.Model.Project;
+import com.portfolio.hermosilla.Service.IPersonaService;
 import com.portfolio.hermosilla.Service.IProjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +23,32 @@ public class ProjectController {
     @Autowired
     private IProjectService projectServ;
     
+    @Autowired
+    private IPersonaService personaServ;
+    
     @GetMapping ("project")
     public ResponseEntity<List<Project>> get(){
         List<Project> projects = projectServ.getProject();
         return new ResponseEntity<List<Project>>(projects, HttpStatus.OK);
     }
     
-    @PostMapping ("project/save")
+    @GetMapping ("projectPersona/{idPersona}")
+    public ResponseEntity<List<Project>> getProjectPersona(@PathVariable Long idPersona){
+        List<Project> projects = projectServ.getProjectPersona(idPersona);
+        return new ResponseEntity<List<Project>>(projects, HttpStatus.OK);
+    }
+    
+    @PostMapping ("project")
     public ResponseEntity<Project> save(@RequestBody Project project) {
         Project projectTemp = projectServ.saveProject(project);
         return new ResponseEntity<Project>(projectTemp, HttpStatus.OK);
+    }
+    
+    @PostMapping ("projectPersona/{idPersona}")
+    public ResponseEntity<Project> saveProjectPersona(@PathVariable(value = "idPersona") Long idPersona,
+                                                          @RequestBody Project project) {
+		Project projectTemp = projectServ.saveProjectId(idPersona, project);
+		return new ResponseEntity<Project>(projectTemp, HttpStatus.OK);
     }
     
     @PutMapping ("project/{id}")

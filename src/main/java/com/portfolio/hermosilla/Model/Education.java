@@ -27,8 +27,8 @@ public class Education {
     private String start;
     private String end;
     
-    @OneToOne (fetch=FetchType.LAZY)    
-    @JoinColumn (name="idPersona")
+    @ManyToOne (fetch=FetchType.LAZY)    
+    @JoinColumn (name="id_persona", nullable=false)
     @JsonIgnore
     private Persona persona;
 

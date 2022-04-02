@@ -1,11 +1,13 @@
 package com.portfolio.hermosilla.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,8 +23,9 @@ public class Skill {
     private Integer score;
     private String color;
     
-    @OneToOne (fetch=FetchType.EAGER)    
-    @JoinColumn (name="idPersona")
+    @ManyToOne (fetch=FetchType.LAZY)    
+    @JoinColumn (name="id_persona", nullable=false)
+    @JsonIgnore
     private Persona persona;
 
     public Skill() {

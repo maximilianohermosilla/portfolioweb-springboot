@@ -1,8 +1,11 @@
 package com.portfolio.hermosilla.Controller;
 
+import com.portfolio.hermosilla.DTO.EducationDTO;
 import org.springframework.http.HttpStatus;
 import com.portfolio.hermosilla.Model.Education;
+import com.portfolio.hermosilla.Model.Persona;
 import com.portfolio.hermosilla.Service.IEducationService;
+import com.portfolio.hermosilla.Service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,15 +25,39 @@ public class EducationController {
     @Autowired
     private IEducationService educationServ;
     
+    @Autowired
+    private IPersonaService personaServ;
+    
     @GetMapping ("education")
     public ResponseEntity<List<Education>> get(){
         List<Education> educations = educationServ.getEducation();
         return new ResponseEntity<List<Education>>(educations, HttpStatus.OK);
     }
     
-    @PostMapping ("education/save")
+    @GetMapping ("educationPersona/{idPersona}")
+    public ResponseEntity<List<Education>> getEducationPersona(@PathVariable Long idPersona){
+        List<Education> educations = educationServ.getEducationPersona(idPersona);
+        return new ResponseEntity<List<Education>>(educations, HttpStatus.OK);
+    }
+        
+    @GetMapping ("educationFull/{id}")
+    public EducationDTO getEducation(@PathVariable Long id){  
+        Education education = educationServ.findEducation(id);
+        Persona persona = education.getPersona();        
+        EducationDTO educationDTO = new EducationDTO(education.getId(), education.getSchool(), education.getTitle(), education.getImage(), education.getCareer(), education.getScore(), education.getStart(), education.getEnd(), persona);               
+        return educationDTO;        
+    }
+    
+    @PostMapping ("education")
     public ResponseEntity<Education> save(@RequestBody Education education) {
 		Education educationTemp = educationServ.saveEducation(education);
+		return new ResponseEntity<Education>(educationTemp, HttpStatus.OK);
+    }
+    
+    @PostMapping ("educationPersona/{idPersona}")
+    public ResponseEntity<Education> saveEducationPersona(@PathVariable(value = "idPersona") Long idPersona,
+                                                          @RequestBody Education education) {
+		Education educationTemp = educationServ.saveEducationId(idPersona, education);
 		return new ResponseEntity<Education>(educationTemp, HttpStatus.OK);
     }
     

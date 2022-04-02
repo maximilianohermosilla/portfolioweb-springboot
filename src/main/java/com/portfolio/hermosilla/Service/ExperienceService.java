@@ -1,9 +1,12 @@
 package com.portfolio.hermosilla.Service;
 
 import com.portfolio.hermosilla.Model.Experience;
+import com.portfolio.hermosilla.Model.Persona;
 import com.portfolio.hermosilla.Repository.ExperienceRepository;
+import com.portfolio.hermosilla.Repository.PersonaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +14,9 @@ public class ExperienceService implements IExperienceService{
 
     @Autowired
     private ExperienceRepository expRepo;
+    
+    @Autowired
+    private PersonaRepository personaRepo;
     
     @Override
     public List<Experience> getExperience() {
@@ -23,9 +29,6 @@ public class ExperienceService implements IExperienceService{
         expRepo.save(experience);
         return experience;
     }
-    /*public void saveExperience(Experience experience) {
-        expRepo.save(experience);
-    }*/
 
     @Override
     public void deleteExperience(Long id) {
@@ -38,4 +41,18 @@ public class ExperienceService implements IExperienceService{
         return expTemp;
     }
     
+    @Override
+    public List<Experience> getExperiencePersona(Long idPersona) {
+        List<Experience> lista = expRepo.findByPersona(idPersona);
+        return lista;
+    }
+    
+    @Override
+    public Experience saveExperienceId(Long idPersona, Experience experience) {
+        Persona persona = personaRepo.findById(idPersona).orElse(null);;
+        experience.setPersona(persona);       
+        
+        expRepo.save(experience);
+        return experience;
+    }
 }

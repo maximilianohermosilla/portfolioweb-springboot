@@ -13,25 +13,25 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 @RestController
 public class PersonaController {
     
     @Autowired
     private IPersonaService personaServ;
     
-    @GetMapping ("portfolio/traerPersona")
+    @GetMapping ("portfolio")
     public List<Persona> getPersonas(){
         return personaServ.getPersona();
     }
     
-    @PostMapping ("portfolio/nuevaPersona")
+    @PostMapping ("portfolio")
     public String createPersona(@RequestBody Persona persona){
         personaServ.savePersona(persona);
         return "Persona: " + persona.getName() + " creado correctamente";
     }
     
-    @PutMapping ("portfolio/editarPersona/{id}")
+    @PutMapping ("portfolio/{id}")
     public Persona editarPersona(@PathVariable Long id,
                                 @RequestBody Persona persona){
         Persona personaFind = personaServ.findPersona(id);
@@ -46,7 +46,7 @@ public class PersonaController {
         return persona;
     }
     
-    @DeleteMapping ("portfolio/borrarPersona/{id}")
+    @DeleteMapping ("portfolio/{id}")
     public String borrarPersona(@PathVariable Long id){
         //Persona persona = personaServ.findPersona(id);
         personaServ.deletePersona(id);
