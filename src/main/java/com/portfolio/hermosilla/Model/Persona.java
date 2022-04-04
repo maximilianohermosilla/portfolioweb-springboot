@@ -44,12 +44,12 @@ public class Persona {
     
     @OneToOne (fetch=FetchType.EAGER)    
     @JoinColumn (name="id_company", nullable=true)
-    @JsonIgnore
+    //@JsonIgnore
     private Experience company;
     
     @OneToOne (fetch=FetchType.EAGER)    
     @JoinColumn (name="id_school", nullable=true)
-    @JsonIgnore
+    //@JsonIgnore
     private Education school;
     
     @OneToMany(

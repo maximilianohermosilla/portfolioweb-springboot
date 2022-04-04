@@ -32,6 +32,10 @@ public class Experience {
     @JoinColumn (name="id_persona", nullable=false)
     @JsonIgnore
     private Persona persona;
+    
+    @OneToOne(mappedBy="company")
+    @JsonIgnore
+    private Persona id_company;
 
     public Experience(Long id, String company, String position, String img, String mode, String start, String end, String timeElapsed, String ubication, Persona persona, Long id_persona) {
         this.id = id;

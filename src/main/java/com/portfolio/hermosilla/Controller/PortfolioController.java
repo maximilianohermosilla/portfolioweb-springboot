@@ -78,43 +78,6 @@ public class PortfolioController {
         return personaFind;
     }
     
-    //Long id, String name, String profilePhoto, String image, String position,
-    //String ubication, String about, Experience company, Education school, List<Experience> experience, List<Education> education) {
-    
-    @PutMapping ("portfolioExperience/{id}")
-    public Persona editarExperience(@PathVariable Long id,
-                                @RequestBody Long id_company){
-        Persona personaFind = personaServ.findPersona(id); 
-        /*PersonaDTO personaDTO = new PersonaDTO(
-                personaFind.getId(),
-                personaFind.getName(),
-                personaFind.getProfilePhoto(),
-                personaFind.getImage(),
-                personaFind.getPosition(),
-                personaFind.getUbication(),
-                personaFind.getAbout(),
-                experience,
-                personaFind.getSchool()); */
-        personaFind.setCompany(experienceServ.findExperience(id_company));
-        personaServ.savePersona(personaFind);
-        return personaFind;
-    }   
-    
-    
-    
-    
-    @PutMapping ("portfolioFull/{id}")
-    public Persona editarPersona(@PathVariable Long id,
-                                @RequestParam(name = "id_company") Long id_company,
-                                @RequestParam(name = "id_school") Long id_school){
-        Persona personaFind = personaServ.findPersona(id); 
-        personaFind.setCompany(experienceServ.findExperience(id_company));
-        personaFind.setSchool(educationServ.findEducation(id_school));        
-        
-        personaServ.savePersona(personaFind);
-        return personaFind;        
-    }
-    
     /*@PostMapping ("portfolio")
     public String createPersona(@RequestBody Persona persona){
         personaServ.savePersona(persona);

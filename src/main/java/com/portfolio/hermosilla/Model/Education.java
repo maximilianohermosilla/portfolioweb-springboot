@@ -31,6 +31,10 @@ public class Education {
     @JoinColumn (name="id_persona", nullable=false)
     @JsonIgnore
     private Persona persona;
+    
+    @OneToOne (mappedBy = "school")
+    @JsonIgnore
+    private Persona id_school;
 
     public Education() {
     }

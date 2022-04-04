@@ -40,7 +40,9 @@ public class PersonaController {
         personaFind.setImage(persona.getImage());
         personaFind.setPosition(persona.getPosition());
         personaFind.setUbication(persona.getUbication());
-        personaFind.setAbout(persona.getAbout());        
+        personaFind.setAbout(persona.getAbout());   
+        personaFind.setCompany(persona.getCompany());
+        personaFind.setSchool(persona.getSchool());
         
         personaServ.savePersona(personaFind);
         return persona;
