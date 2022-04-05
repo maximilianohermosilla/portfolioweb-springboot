@@ -3,10 +3,13 @@ package com.portfolio.hermosilla.Service;
 import com.portfolio.hermosilla.Model.Usuario;
 import com.portfolio.hermosilla.Repository.UsuarioRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class UsuarioService implements IUsuarioService{
     
     @Autowired
@@ -33,6 +36,14 @@ public class UsuarioService implements IUsuarioService{
     public Usuario findUsuario(Long id) {
        Usuario usuarioTemp = usuarioRepo.findById(id).orElse(null);
        return usuarioTemp;
+    }
+    
+    public Optional<Usuario> getByUser(String user){
+        return usuarioRepo.findByUser(user);
+    }
+    
+    public boolean existeByUser(String user){
+        return usuarioRepo.existsByUser(user);
     }
     
 }
