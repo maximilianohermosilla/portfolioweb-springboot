@@ -27,19 +27,7 @@ public class Persona {
     private String profilePhoto;
     private String image;
     private String position;
-    private String ubication;
-
-    public Persona(Long id, String name, String profilePhoto, String image, String position, String ubication, String about, Experience company, Education school) {
-        this.id = id;
-        this.name = name;
-        this.profilePhoto = profilePhoto;
-        this.image = image;
-        this.position = position;
-        this.ubication = ubication;
-        this.about = about;
-        this.company = company;
-        this.school = school;
-    }
+    private String ubication;    
     private String about;
     
     @OneToOne (fetch=FetchType.EAGER)    
@@ -57,7 +45,11 @@ public class Persona {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Education> education = new ArrayList<>();   
+    private List<Education> education = new ArrayList<>();
+    
+    @OneToOne(mappedBy="persona")
+    @JsonIgnore
+    private Usuario usuario;
     
 
     public Persona() {
@@ -81,6 +73,23 @@ public class Persona {
         this.ubication = ubication;
         this.about = about;
     }
+    
+    public Persona(Long id, String name, String profilePhoto, String image, String position, String ubication, String about, Experience company, Education school) {
+        this.id = id;
+        this.name = name;
+        this.profilePhoto = profilePhoto;
+        this.image = image;
+        this.position = position;
+        this.ubication = ubication;
+        this.about = about;
+        this.company = company;
+        this.school = school;
+    }
+
+    public Persona(String name) {
+        this.name = name;
+    }
+    
     
     
     

@@ -1,14 +1,15 @@
 package com.portfolio.hermosilla.DTO;
 
 import com.sun.istack.NotNull;
+import javax.validation.constraints.NotBlank;
 
 
 public class LoginUsuarioDTO {
     
-    @NotNull
+    @NotBlank
     private String user;
   
-    @NotNull
+    @NotBlank
     private String password;
 
     public String getUser() {

@@ -37,7 +37,7 @@ public class Usuario {
     private Set<Perfil> perfiles = new HashSet<>();
     
     @OneToOne (fetch=FetchType.EAGER)    
-    @JoinColumn (name="idPersona")
+    @JoinColumn (name="id_persona", nullable=true)
     private Persona persona;
 
     public Usuario() {
@@ -63,6 +63,14 @@ public class Usuario {
         this.name = name;
         this.password = password;
         this.habilitado = habilitado;
+    }
+
+    public Usuario(String user, String name, String password, Boolean habilitado, Persona persona) {
+        this.user = user;
+        this.name = name;
+        this.password = password;
+        this.habilitado = habilitado;
+        this.persona = persona;
     }
     
     
