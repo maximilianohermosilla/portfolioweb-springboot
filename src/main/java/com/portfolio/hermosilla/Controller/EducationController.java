@@ -72,7 +72,6 @@ public class EducationController {
         eduTemp.setStart(education.getStart());
         eduTemp.setEnd(education.getEnd());
         eduTemp.setTitle(education.getTitle());
-        eduTemp.setPersona(education.getPersona());
         
         
         educationServ.saveEducation(eduTemp);

@@ -39,7 +39,7 @@ public class Education {
     public Education() {
     }
 
-    public Education(Long id, String school, String title, String image, String career, String score, String start, String end, Long idpersona) {
+    public Education(Long id, String school, String title, String image, String career, String score, String start, String end, Persona persona) {
         this.id = id;
         this.school = school;
         this.title = title;
@@ -48,6 +48,7 @@ public class Education {
         this.score = score;
         this.start = start;
         this.end = end;
+        this.persona = persona;
     }
 
     public Education(String school, String title, String image, String career, String score, String start, String end, Persona persona) {
