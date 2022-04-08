@@ -43,6 +43,13 @@ public class PersonaController {
         personaFind.setAbout(persona.getAbout());   
         personaFind.setCompany(persona.getCompany());
         personaFind.setSchool(persona.getSchool());
+        personaFind.setEmail(persona.getEmail());
+        personaFind.setFacebook(persona.getFacebook());
+        personaFind.setLinkedin(persona.getLinkedin());
+        personaFind.setInstagram(persona.getInstagram());
+        personaFind.setYoutube(persona.getYoutube());
+        personaFind.setGithub(persona.getGithub());
+        
         
         personaServ.savePersona(personaFind);
         return persona;

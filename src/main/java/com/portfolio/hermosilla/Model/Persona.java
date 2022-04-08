@@ -29,6 +29,13 @@ public class Persona {
     private String position;
     private String ubication;    
     private String about;
+    private String email;
+    private String facebook;
+    private String linkedin;
+    private String instagram;
+    private String youtube;
+    private String github;
+    
     
     @OneToOne (fetch=FetchType.EAGER)    
     @JoinColumn (name="id_company", nullable=true)
@@ -88,6 +95,25 @@ public class Persona {
 
     public Persona(String name) {
         this.name = name;
+    }
+
+    public Persona(Long id, String name, String profilePhoto, String image, String position, String ubication, String about, String email, String facebook, String linkedin, String instagram, String youtube, String github, Experience company, Education school, Usuario usuario) {
+        this.id = id;
+        this.name = name;
+        this.profilePhoto = profilePhoto;
+        this.image = image;
+        this.position = position;
+        this.ubication = ubication;
+        this.about = about;
+        this.email = email;
+        this.facebook = facebook;
+        this.linkedin = linkedin;
+        this.instagram = instagram;
+        this.youtube = youtube;
+        this.github = github;
+        this.company = company;
+        this.school = school;
+        this.usuario = usuario;
     }
     
     
