@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long>{
     
-    @Query(value = "SELECT * FROM Project e WHERE e.id_persona = :idPersona", nativeQuery=true)
+    @Query(value = "SELECT * FROM project e WHERE e.id_persona = :idPersona", nativeQuery=true)
         List<Project> findByPersona(@Param("idPersona") Long idPersona);
         
 }

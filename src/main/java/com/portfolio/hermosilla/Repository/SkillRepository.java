@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SkillRepository extends JpaRepository<Skill, Long>{
     
-    @Query(value = "SELECT * FROM Skill e WHERE e.id_persona = :idPersona", nativeQuery=true)
+    @Query(value = "SELECT * FROM skill e WHERE e.id_persona = :idPersona", nativeQuery=true)
         List<Skill> findByPersona(@Param("idPersona") Long idPersona);
     
 }

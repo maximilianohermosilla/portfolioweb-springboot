@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface EducationRepository extends JpaRepository<Education, Long>{
     
     
-    @Query(value = "SELECT * FROM Education e WHERE e.id_persona = :idPersona", nativeQuery=true)
+    @Query(value = "SELECT * FROM education e WHERE e.id_persona = :idPersona", nativeQuery=true)
         List<Education> findByPersona(@Param("idPersona") Long idPersona);
 }

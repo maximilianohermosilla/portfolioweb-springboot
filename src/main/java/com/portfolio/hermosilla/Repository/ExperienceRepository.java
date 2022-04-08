@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Transactional
 public interface ExperienceRepository extends JpaRepository<Experience, Long>{
     
-    @Query(value = "SELECT * FROM Experience e WHERE e.id_persona = :idPersona", nativeQuery=true)
+    @Query(value = "SELECT * FROM experience e WHERE e.id_persona = :idPersona", nativeQuery=true)
         List<Experience> findByPersona(@Param("idPersona") Long idPersona);
     
     
