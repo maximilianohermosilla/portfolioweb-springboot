@@ -69,17 +69,17 @@ public class AuthController {
             if (bindingResult.hasErrors()){
             return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
         }
-        if(usuarioService.existeByUser(nuevoUsuario.getUser())){
+        /*if(usuarioService.existeByUser(nuevoUsuario.getUser())){
             return new ResponseEntity(new Mensaje("El usuario ya existe"), HttpStatus.BAD_REQUEST);
-        }
+        }*/
         Persona persona = new Persona(nuevoUsuario.getName());
         personaService.savePersona(persona);
         Usuario usuario = new Usuario(nuevoUsuario.getUser(), nuevoUsuario.getName(), passwordEncoder.encode(nuevoUsuario.getPassword()),true, persona);
         Set<Perfil> perfiles = new HashSet<>();
-        perfiles.add(perfilService.getByPerfilNombre(PerfilNombre.PERFIL_USER).get());
+        /*perfiles.add(perfilService.getByPerfilNombre(PerfilNombre.PERFIL_USER).get());
         if(nuevoUsuario.getPerfiles().contains("admin")){
             perfiles.add(perfilService.getByPerfilNombre(PerfilNombre.PERFIL_ADMIN).get());
-        }
+        }*/
         usuario.setPerfiles(perfiles);
         
         usuarioService.saveUsuario(usuario);
