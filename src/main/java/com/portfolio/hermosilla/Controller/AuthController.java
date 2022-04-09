@@ -82,11 +82,11 @@ public class AuthController {
         }
         usuario.setPerfiles(perfiles);
         
-        //usuarioService.saveUsuario(usuario);
+        usuarioService.saveUsuario(usuario);
         return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
             
         } catch (Exception e) {
-             logger.error("fail en el metodo doFilter");
+             logger.error(e.toString());
              return new ResponseEntity(new Mensaje(e.toString()), HttpStatus.BAD_REQUEST);
         }
         //return new ResponseEntity(new Mensaje("El usuario ya existe"), HttpStatus.BAD_REQUEST);
