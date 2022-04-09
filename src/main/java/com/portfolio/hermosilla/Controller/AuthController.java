@@ -82,7 +82,7 @@ public class AuthController {
         }
         usuario.setPerfiles(perfiles);
         
-        usuarioService.saveUsuario(usuario);
+        //usuarioService.saveUsuario(usuario);
         return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
             
         } catch (Exception e) {
